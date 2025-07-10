@@ -1,23 +1,22 @@
-// index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const formRoutes = require('./routes/formRoutes');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/smartformify', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/smartformify', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Use form routes with '/api' prefix
+// Use form routes
 app.use('/api', formRoutes);
 
-// Default route
 app.get('/', (req, res) => {
   res.send('Welcome to SmartFormify backend!');
 });

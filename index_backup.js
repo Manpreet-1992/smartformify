@@ -1,17 +1,10 @@
-// index.js
-
 const express = require('express');
 const app = express();
 
-// Middleware
-app.use(express.json());
-
-// Default route
 app.get('/', (req, res) => {
   res.send('Welcome to SmartFormify backend!');
 });
 
-// Server setup
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`SmartFormify server running on port ${PORT}`);

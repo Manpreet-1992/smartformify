@@ -9,13 +9,15 @@ app.use(express.json());
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/smartformify', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-// Use routes
+// Use form routes with '/api' prefix
 app.use('/api', formRoutes);
 
+// Default route
 app.get('/', (req, res) => {
   res.send('Welcome to SmartFormify backend!');
 });

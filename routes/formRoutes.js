@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Form = require('..models/Form');
+const Form = require('../models/Form');
 
 // CREATE a new form
 router.post('/forms', async (req, res) => {

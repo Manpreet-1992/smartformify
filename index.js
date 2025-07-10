@@ -15,6 +15,17 @@ app.get('/api/forms', (req, res) => {
   res.json({ message: "List of forms" });
 });
 
+// Store forms temporarily in memory (for testing)
+let forms = [];
+
+// POST route to add a new form
+app.post('/api/forms', (req, res) => {
+  const newForm = req.body;  // get form data from request body
+  forms.push(newForm);       // save it in memory
+  res.status(201).json({ message: 'Form created', form: newForm });
+});
+
+
 // Route to handle form submissions (POST)
 app.post('/api/forms', (req, res) => {
   const formData = req.body;

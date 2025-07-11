@@ -1,0 +1,17 @@
+/* src/pages/Dashboard.css */
+.dashboard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.dashboard h2 {
+  color: #2f3542;
+  margin-bottom: 10px;
+}
+
+.dashboard p {
+  font-size: 1.1rem;
+  color: #57606f;
+}

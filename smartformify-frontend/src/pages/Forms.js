@@ -1,69 +1,49 @@
 // src/pages/Forms.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Forms.css";
 
 function Forms() {
-  const [formFields, setFormFields] = useState([]);
-
-  // Load from localStorage on first render
-  useEffect(() => {
-    const savedForm = localStorage.getItem("savedForm");
-    if (savedForm) {
-      setFormFields(JSON.parse(savedForm));
-    }
-  }, []);
-
-  // Save formFields to localStorage every time they change
-  useEffect(() => {
-    localStorage.setItem("savedForm", JSON.stringify(formFields));
-  }, [formFields]);
+  const [fields, setFields] = useState([]);
 
   const addTextField = () => {
-    setFormFields([...formFields, { type: "text", label: "Text Field" }]);
+    setFields([...fields, { type: "text", label: "Text Field" }]);
   };
 
   const addCheckboxField = () => {
-    setFormFields([...formFields, { type: "checkbox", label: "Checkbox Field" }]);
+    setFields([...fields, { type: "checkbox", label: "Checkbox Field" }]);
   };
 
-  const handleLabelChange = (index, value) => {
-    const updated = [...formFields];
-    updated[index].label = value;
-    setFormFields(updated);
-  };
-
-  const clearForm = () => {
-    if (window.confirm("Clear the form? This cannot be undone.")) {
-      setFormFields([]);
-      localStorage.removeItem("savedForm");
-    }
+  const updateLabel = (index, newLabel) => {
+    const updated = [...fields];
+    updated[index].label = newLabel;
+    setFields(updated);
   };
 
   return (
-    <div className="form-builder-page">
+    <div className="form-builder-container">
       <h2>🧾 Form Builder</h2>
-
-      <div className="form-builder-controls">
+      <div className="form-actions">
         <button onClick={addTextField}>➕ Add Text Field</button>
-        <button onClick={addCheckboxField}>☑️ Add Checkbox Field</button>
-        <button onClick={clearForm} className="danger-btn">🗑️ Clear Form</button>
+        <button onClick={addCheckboxField}>☑️ Add Checkbox</button>
       </div>
 
-      <form className="form-preview">
-        {formFields.map((field, index) => (
-          <div className="form-field" key={index}>
+      <form className="dynamic-form">
+        {fields.map((field, index) => (
+          <div key={index} className="form-field">
             <input
               type="text"
-              className="label-input"
               value={field.label}
-              onChange={(e) => handleLabelChange(index, e.target.value)}
+              onChange={(e) => updateLabel(index, e.target.value)}
+              className="label-editor"
             />
-            {field.type === "text" && <input type="text" placeholder="Enter text..." />}
-            {field.type === "checkbox" && <input type="checkbox" />}
+            {field.type === "text" ? (
+              <input type="text" placeholder="User input here..." disabled />
+            ) : (
+              <input type="checkbox" disabled />
+            )}
           </div>
         ))}
-
-        {formFields.length > 0 && <button className="submit-btn">Submit</button>}
+        {fields.length > 0 && <button type="submit">Submit</button>}
       </form>
     </div>
   );

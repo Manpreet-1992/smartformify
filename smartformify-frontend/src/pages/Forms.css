@@ -1,73 +1,89 @@
-/* src/pages/Forms.css */
 .form-builder-page {
-  padding: 2rem;
-  background: linear-gradient(to right, #f8fbff, #e1f5fe);
-  border-radius: 12px;
-  max-width: 800px;
-  margin: auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+  background: linear-gradient(to right, #f4f6f8, #eaeef3);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  color: #333;
 }
 
-h2 {
-  text-align: center;
-  font-size: 1.8rem;
+.form-builder-page h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
   color: #2c3e50;
-  margin-bottom: 1.5rem;
 }
 
 .form-builder-controls {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 2rem;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .form-builder-controls button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 16px;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 18px;
   border: none;
   border-radius: 6px;
-  font-weight: 500;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-size: 15px;
 }
 
 .form-builder-controls button:hover {
-  background-color: #0056b3;
+  background-color: #2980b9;
+}
+
+.danger-btn {
+  background-color: #e74c3c;
+}
+
+.danger-btn:hover {
+  background-color: #c0392b;
 }
 
 .form-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  margin-top: 10px;
 }
 
 .form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 25px;
 }
 
 .label-input {
-  padding: 0.4rem;
-  font-size: 1rem;
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+}
+
+.form-preview input[type="text"],
+.form-preview input[type="checkbox"] {
+  margin-top: 6px;
+  font-size: 16px;
 }
 
 .submit-btn {
-  background-color: #28a745;
+  background-color: #2ecc71;
   color: white;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 6px;
-  font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 1rem;
-  align-self: flex-start;
+  transition: background 0.3s ease;
+  margin-top: 10px;
 }
 
 .submit-btn:hover {
-  background-color: #218838;
+  background-color: #27ae60;
 }

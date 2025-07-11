@@ -9,6 +9,8 @@ import Marketing from "./pages/Marketing";
 import "./App.css";
 
 function App() {
+  const apiURL=process.env.REACT_APP_API_URL;
+  console.log('API URL:',apiURL);
   return (
     <Router>
       <div className="app-layout">

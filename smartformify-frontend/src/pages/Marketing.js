@@ -1,72 +1,74 @@
-// src/pages/Marketing.js
 import React, { useState } from "react";
 import "./Marketing.css";
 
 function Marketing() {
-  const [platform, setPlatform] = useState("LinkedIn");
-  const [message, setMessage] = useState("");
-  const [schedule, setSchedule] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [campaigns, setCampaigns] = useState([
+    { id: 1, name: "LinkedIn Launch", status: "Active" },
+    { id: 2, name: "Twitter Promo", status: "Paused" },
+  ]);
+  const [newCampaignName, setNewCampaignName] = useState("");
+  const [newCampaignStatus, setNewCampaignStatus] = useState("Active");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newPost = {
-      platform,
-      message,
-      schedule,
-    };
-    setPosts([...posts, newPost]);
-    setMessage("");
-    setSchedule("");
+  const addCampaign = () => {
+    if (!newCampaignName.trim()) return alert("Enter campaign name");
+    setCampaigns([
+      ...campaigns,
+      { id: Date.now(), name: newCampaignName, status: newCampaignStatus },
+    ]);
+    setNewCampaignName("");
+    setNewCampaignStatus("Active");
   };
 
   return (
     <div className="marketing-container">
-      <h2>📢 Social Media Marketing</h2>
-      <form onSubmit={handleSubmit} className="marketing-form">
-        <label>Platform</label>
-        <select value={platform} onChange={(e) => setPlatform(e.target.value)}>
-          <option value="LinkedIn">LinkedIn</option>
-          <option value="Facebook">Facebook</option>
-          <option value="Twitter">Twitter</option>
-        </select>
+      <h2>📢 Marketing Campaigns</h2>
 
-        <label>Post Message</label>
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-          placeholder="Write your post here..."
-        />
-
-        <label>Schedule Time</label>
+      <div className="add-campaign">
         <input
-          type="datetime-local"
-          value={schedule}
-          onChange={(e) => setSchedule(e.target.value)}
-          required
+          type="text"
+          placeholder="Campaign Name"
+          value={newCampaignName}
+          onChange={(e) => setNewCampaignName(e.target.value)}
         />
-
-        <button type="submit">📅 Schedule Post</button>
-      </form>
-
-      <div className="scheduled-posts">
-        <h3>🗓️ Scheduled Posts</h3>
-        {posts.length === 0 ? (
-          <p>No posts scheduled yet.</p>
-        ) : (
-          <ul>
-            {posts.map((post, index) => (
-              <li key={index}>
-                <strong>{post.platform}</strong> — {post.message} <br />
-                <small>Scheduled for: {post.schedule}</small>
-              </li>
-            ))}
-          </ul>
-        )}
+        <select
+          value={newCampaignStatus}
+          onChange={(e) => setNewCampaignStatus(e.target.value)}
+        >
+          <option value="Active">Active</option>
+          <option value="Paused">Paused</option>
+        </select>
+        <button onClick={addCampaign}>Add Campaign</button>
       </div>
+
+      <table className="campaigns-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {campaigns.map((c) => (
+            <tr key={c.id}>
+              <td>{c.name}</td>
+              <td
+                className={
+                  c.status === "Active" ? "status-active" : "status-paused"
+                }
+              >
+                {c.status}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
 
 export default Marketing;
+
+
+
+
+

@@ -1,77 +1,46 @@
 /* src/pages/Employees.css */
-.employees-page {
+
+.employees-container {
   padding: 2rem;
-  max-width: 700px;
-  margin: auto;
-  background: linear-gradient(to bottom right, #f9f9f9, #e6f7ff);
+  background: #fff8e1;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: #34495e;
   margin-bottom: 1.5rem;
+  color: #333;
 }
 
-.employee-form {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 2rem;
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.employee-form input {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  flex: 1;
+.employees-table th,
+.employees-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.employee-form button {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.employees-table tr:hover {
+  background-color: #f0f0f0;
 }
 
-.employee-form button:hover {
-  background-color: #0056b3;
+.employees-table th {
+  background-color: #ffcc00;
+  color: #444;
 }
 
-.employee-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.employees-table td.active {
+  color: green;
+  font-weight: bold;
 }
 
-.employee-card {
-  background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #ddd;
-}
-
-.employee-card p {
-  margin: 0;
-  color: #666;
-}
-
-.employee-card button {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.7rem;
-  cursor: pointer;
-}
-
-.employee-card button:hover {
-  background-color: #c82333;
+.employees-table td.inactive {
+  color: red;
+  font-weight: bold;
 }

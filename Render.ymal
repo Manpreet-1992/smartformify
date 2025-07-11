@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: smartformify-backend
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: MONGO_URI
+        value: YOUR_MONGODB_ATLAS_URI_HERE

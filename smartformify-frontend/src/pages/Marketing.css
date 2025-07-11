@@ -1,51 +1,67 @@
 /* src/pages/Marketing.css */
-.marketing-page {
-  padding: 2rem;
-  max-width: 900px;
-  margin: auto;
-  background: linear-gradient(to bottom right, #ffffff, #e1f5fe);
+
+.marketing-container {
+  padding: 30px;
+  background-color: #f3f7fd;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.marketing-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  background: white;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 2rem;
+.marketing-form label {
+  margin-top: 15px;
+  font-weight: 600;
 }
 
-.campaign-summary {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+.marketing-form select,
+.marketing-form textarea,
+.marketing-form input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.campaign-card {
-  background-color: #f7f9fb;
-  border: 1px solid #cce0f5;
-  padding: 1rem;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.campaign-card:hover {
-  box-shadow: 0 0 10px rgba(0, 153, 255, 0.2);
-  transform: scale(1.02);
-}
-
-.status {
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.status.active {
-  background-color: #28a745;
+.marketing-form button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #0b5ed7;
   color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.status.paused {
-  background-color: #ffc107;
-  color: black;
+.marketing-form button:hover {
+  background-color: #094cb1;
+}
+
+.scheduled-posts {
+  margin-top: 40px;
+  max-width: 600px;
+}
+
+.scheduled-posts ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scheduled-posts li {
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-left: 6px solid #0b5ed7;
+  border-radius: 10px;
 }

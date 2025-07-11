@@ -3,58 +3,45 @@ import React, { useState } from "react";
 import "./Forms.css";
 
 function Forms() {
-  const [fields, setFields] = useState([]);
-  const [formData, setFormData] = useState({});
+  const [formFields, setFormFields] = useState([]);
 
-  const addField = (type) => {
-    const newField = {
-      id: Date.now(),
-      type,
-      label: `${type.charAt(0).toUpperCase() + type.slice(1)} Field`,
-    };
-    setFields([...fields, newField]);
+  const addTextField = () => {
+    setFormFields([...formFields, { type: "text", label: "Text Field" }]);
   };
 
-  const handleChange = (id, value) => {
-    setFormData({
-      ...formData,
-      [id]: value,
-    });
+  const addCheckboxField = () => {
+    setFormFields([...formFields, { type: "checkbox", label: "Checkbox Field" }]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted Form Data:", formData);
-    alert("Form submitted! Check console.");
+  const handleLabelChange = (index, value) => {
+    const updatedFields = [...formFields];
+    updatedFields[index].label = value;
+    setFormFields(updatedFields);
   };
 
   return (
     <div className="form-builder-page">
       <h2>🧾 Form Builder</h2>
 
-      <div className="button-row">
-        <button onClick={() => addField("text")}>➕ Add Text Field</button>
-        <button onClick={() => addField("checkbox")}>✅ Add Checkbox Field</button>
+      <div className="form-builder-controls">
+        <button onClick={addTextField}>➕ Add Text Field</button>
+        <button onClick={addCheckboxField}>☑️ Add Checkbox Field</button>
       </div>
 
-      <form onSubmit={handleSubmit} className="dynamic-form">
-        {fields.map((field) => (
-          <div key={field.id} className="form-field">
-            <label>{field.label}</label>
-            {field.type === "text" ? (
-              <input
-                type="text"
-                onChange={(e) => handleChange(field.id, e.target.value)}
-              />
-            ) : (
-              <input
-                type="checkbox"
-                onChange={(e) => handleChange(field.id, e.target.checked)}
-              />
-            )}
+      <form className="form-preview">
+        {formFields.map((field, index) => (
+          <div className="form-field" key={index}>
+            <input
+              type="text"
+              className="label-input"
+              value={field.label}
+              onChange={(e) => handleLabelChange(index, e.target.value)}
+            />
+            {field.type === "text" && <input type="text" placeholder="Enter text..." />}
+            {field.type === "checkbox" && <input type="checkbox" />}
           </div>
         ))}
-        {fields.length > 0 && <button type="submit">🚀 Submit Form</button>}
+        {formFields.length > 0 && <button className="submit-btn">Submit</button>}
       </form>
     </div>
   );

@@ -1,43 +1,43 @@
 /* src/pages/Forms.css */
 .form-builder-page {
   padding: 2rem;
-  background: linear-gradient(to bottom right, #f3f9ff, #d0eaff);
+  background: linear-gradient(to right, #f8fbff, #e1f5fe);
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
   text-align: center;
+  font-size: 1.8rem;
   color: #2c3e50;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.button-row button {
-  padding: 0.6rem 1rem;
+.form-builder-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.form-builder-controls button {
   background-color: #007bff;
-  border: none;
   color: white;
-  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: bold;
   transition: background 0.3s ease;
 }
 
-.button-row button:hover {
+.form-builder-controls button:hover {
   background-color: #0056b3;
 }
 
-.dynamic-form {
+.form-preview {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -46,34 +46,28 @@ h2 {
 .form-field {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
-.form-field label {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-.form-field input[type="text"] {
-  padding: 0.5rem;
+.label-input {
+  padding: 0.4rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
-.form-field input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-}
-
-button[type="submit"] {
+.submit-btn {
   background-color: #28a745;
   color: white;
-  padding: 0.7rem;
-  font-size: 1rem;
+  padding: 12px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 1rem;
+  align-self: flex-start;
 }
 
-button[type="submit"]:hover {
-  background-color: #1e7e34;
+.submit-btn:hover {
+  background-color: #218838;
 }

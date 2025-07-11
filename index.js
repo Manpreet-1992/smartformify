@@ -1,27 +1,39 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const formRoutes = require('./routes/formRoutes');
-require('dotenv').config();
 
 const app = express();
+const PORT = process.env.PORT || 10000;
+
+// Middleware
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/smartformify', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
-
-// Use form routes
-app.use('/api', formRoutes);
-
+// Basic route
 app.get('/', (req, res) => {
-  res.send('Welcome to SmartFormify backend!');
+  res.send('Welcome to SmartFormify Backend API');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`SmartFormify server running on port ${PORT}`);
-});
+// Check Mongo URI
+if (!process.env.MONGO_URI) {
+  console.error('❌ MONGO_URI is not defined in the environment variables.');
+  process.exit(1);
+}
+
+// Connect to MongoDB
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+    // Start the server only after DB connects
+    app.listen(PORT, () => {
+      console.log(`🚀 SmartFormify server running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err.message);
+    process.exit(1);
+  });
+

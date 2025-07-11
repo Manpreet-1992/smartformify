@@ -1,9 +1,22 @@
 // src/pages/Forms.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Forms.css";
 
 function Forms() {
   const [formFields, setFormFields] = useState([]);
+
+  // Load from localStorage on first render
+  useEffect(() => {
+    const savedForm = localStorage.getItem("savedForm");
+    if (savedForm) {
+      setFormFields(JSON.parse(savedForm));
+    }
+  }, []);
+
+  // Save formFields to localStorage every time they change
+  useEffect(() => {
+    localStorage.setItem("savedForm", JSON.stringify(formFields));
+  }, [formFields]);
 
   const addTextField = () => {
     setFormFields([...formFields, { type: "text", label: "Text Field" }]);
@@ -14,9 +27,16 @@ function Forms() {
   };
 
   const handleLabelChange = (index, value) => {
-    const updatedFields = [...formFields];
-    updatedFields[index].label = value;
-    setFormFields(updatedFields);
+    const updated = [...formFields];
+    updated[index].label = value;
+    setFormFields(updated);
+  };
+
+  const clearForm = () => {
+    if (window.confirm("Clear the form? This cannot be undone.")) {
+      setFormFields([]);
+      localStorage.removeItem("savedForm");
+    }
   };
 
   return (
@@ -26,6 +46,7 @@ function Forms() {
       <div className="form-builder-controls">
         <button onClick={addTextField}>➕ Add Text Field</button>
         <button onClick={addCheckboxField}>☑️ Add Checkbox Field</button>
+        <button onClick={clearForm} className="danger-btn">🗑️ Clear Form</button>
       </div>
 
       <form className="form-preview">
@@ -41,6 +62,7 @@ function Forms() {
             {field.type === "checkbox" && <input type="checkbox" />}
           </div>
         ))}
+
         {formFields.length > 0 && <button className="submit-btn">Submit</button>}
       </form>
     </div>

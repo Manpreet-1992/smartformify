@@ -9,10 +9,10 @@
     "dev": "rimraf node_modules && npm install && npm run start"
   },
   "dependencies": {
-    "@vercel/remix": "^2.16.7",
+    "@vercel/remix": "^2.8.0",
     "express": "^4.18.2",
     "mongodb": "^5.5.0",
-    "mongoose": "^7.0.0"
+    "mongoose": "^7.8.7"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.4.1",
@@ -22,5 +22,14 @@
     "node": ">=16.0.0"
   },
   "author": "Manpreet Kaur",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manpreet-1992/smartformify.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Manpreet-1992/smartformify/issues"
+  },
+  "homepage": "https://github.com/Manpreet-1992/smartformify#readme"
 }

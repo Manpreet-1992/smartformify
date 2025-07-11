@@ -2,62 +2,35 @@
 import React, { useState } from "react";
 import "./Employees.css";
 
-function Employees() {
+function Employees() { 
+    // eslint-disable-next-line no-unused-vars
   const [employees, setEmployees] = useState([
-    { id: 1, name: "John Doe", role: "Software Engineer" },
-    { id: 2, name: "Jane Smith", role: "Product Manager" },
+    { id: 1, name: "Alice Johnson", role: "Developer", status: "Active" },
+    { id: 2, name: "Bob Smith", role: "Designer", status: "Active" },
+    { id: 3, name: "Charlie Lee", role: "Project Manager", status: "Inactive" },
   ]);
 
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-
-  const addEmployee = () => {
-    if (!name.trim() || !role.trim()) return;
-    const newEmp = {
-      id: Date.now(),
-      name,
-      role,
-    };
-    setEmployees([...employees, newEmp]);
-    setName("");
-    setRole("");
-  };
-
-  const deleteEmployee = (id) => {
-    setEmployees(employees.filter((emp) => emp.id !== id));
-  };
-
   return (
-    <div className="employees-page">
-      <h2>👨‍💼 Employees</h2>
-
-      <div className="employee-form">
-        <input
-          type="text"
-          placeholder="Employee Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Employee Role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        />
-        <button onClick={addEmployee}>➕ Add Employee</button>
-      </div>
-
-      <div className="employee-list">
-        {employees.map((emp) => (
-          <div key={emp.id} className="employee-card">
-            <div>
-              <strong>{emp.name}</strong>
-              <p>{emp.role}</p>
-            </div>
-            <button onClick={() => deleteEmployee(emp.id)}>❌</button>
-          </div>
-        ))}
-      </div>
+    <div className="employees-container">
+      <h2>👥 Employee Tracking</h2>
+      <table className="employees-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map(({ id, name, role, status }) => (
+            <tr key={id}>
+              <td>{name}</td>
+              <td>{role}</td>
+              <td className={status.toLowerCase()}>{status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

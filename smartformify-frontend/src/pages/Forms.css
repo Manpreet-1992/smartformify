@@ -1,67 +1,76 @@
-/* src/pages/Forms.css */
 .form-builder-container {
-  padding: 2rem;
-  background: #fdfdfd;
+  max-width: 600px;
+  margin: 20px auto;
+  background: #fefefe;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 2rem;
-  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h2 {
-  color: #333;
-  margin-bottom: 1rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
 }
 
-.form-actions {
-  margin-bottom: 1.5rem;
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
 }
 
-.form-actions button {
-  background-color: #007bff;
-  border: none;
+button {
+  padding: 10px 18px;
+  background-color: #2980b9;
   color: white;
-  padding: 10px 16px;
-  margin-right: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.25s ease;
 }
 
-.form-actions button:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: #3498db;
 }
 
 .dynamic-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 18px;
 }
 
 .form-field {
-  background-color: #f1f1f1;
-  padding: 1rem;
-  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 15px;
 }
 
-.label-editor {
-  font-size: 1rem;
-  padding: 0.5rem;
+.label-input {
+  flex: 1;
+  padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-form button[type="submit"] {
-  align-self: flex-start;
-  background-color: #28a745;
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-top: 1rem;
+.form-field input[type="text"] {
+  flex: 2;
+  padding: 8px 12px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #27ae60;
+}
+
+.submit-btn:hover {
+  background-color: #2ecc71;
 }

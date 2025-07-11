@@ -1,36 +1,114 @@
-// src/pages/Employees.js
 import React, { useState } from "react";
 import "./Employees.css";
 
-function Employees() { 
-    // eslint-disable-next-line no-unused-vars
+function Employees() {
   const [employees, setEmployees] = useState([
-    { id: 1, name: "Alice Johnson", role: "Developer", status: "Active" },
-    { id: 2, name: "Bob Smith", role: "Designer", status: "Active" },
-    { id: 3, name: "Charlie Lee", role: "Project Manager", status: "Inactive" },
+    { id: 1, name: "John Doe", role: "Developer" },
+    { id: 2, name: "Jane Smith", role: "Designer" },
   ]);
+
+  const [newName, setNewName] = useState("");
+  const [newRole, setNewRole] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [editName, setEditName] = useState("");
+  const [editRole, setEditRole] = useState("");
+
+  const handleAdd = () => {
+    if (!newName.trim() || !newRole.trim()) return;
+    const newEmployee = {
+      id: Date.now(),
+      name: newName.trim(),
+      role: newRole.trim(),
+    };
+    setEmployees([...employees, newEmployee]);
+    setNewName("");
+    setNewRole("");
+  };
+
+  const startEdit = (employee) => {
+    setEditId(employee.id);
+    setEditName(employee.name);
+    setEditRole(employee.role);
+  };
+
+  const saveEdit = () => {
+    setEmployees(
+      employees.map((emp) =>
+        emp.id === editId ? { ...emp, name: editName.trim(), role: editRole.trim() } : emp
+      )
+    );
+    setEditId(null);
+    setEditName("");
+    setEditRole("");
+  };
+
+  const cancelEdit = () => {
+    setEditId(null);
+  };
+
+  const handleDelete = (id) => {
+    setEmployees(employees.filter((emp) => emp.id !== id));
+  };
 
   return (
     <div className="employees-container">
-      <h2>👥 Employee Tracking</h2>
-      <table className="employees-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map(({ id, name, role, status }) => (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{role}</td>
-              <td className={status.toLowerCase()}>{status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2>Employees</h2>
+
+      <div className="add-employee">
+        <input
+          type="text"
+          placeholder="Name"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Role"
+          value={newRole}
+          onChange={(e) => setNewRole(e.target.value)}
+        />
+        <button className="add-btn" onClick={handleAdd}>
+          Add Employee
+        </button>
+      </div>
+
+      <ul className="employee-list">
+        {employees.map((emp) => (
+          <li key={emp.id} className="employee-item">
+            {editId === emp.id ? (
+              <>
+                <input
+                  className="edit-input"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                />
+                <input
+                  className="edit-input"
+                  value={editRole}
+                  onChange={(e) => setEditRole(e.target.value)}
+                />
+                <button className="save-btn" onClick={saveEdit}>
+                  Save
+                </button>
+                <button className="cancel-btn" onClick={cancelEdit}>
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
+                <span className="emp-name">{emp.name}</span> -{" "}
+                <span className="emp-role">{emp.role}</span>
+                <button className="edit-btn" onClick={() => startEdit(emp)}>
+                  Edit
+                </button>
+                <button className="delete-btn" onClick={() => handleDelete(emp.id)}>
+                  Delete
+                </button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

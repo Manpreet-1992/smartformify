@@ -1,54 +1,65 @@
+// src/pages/Employees.js
 import React, { useState } from "react";
 import "./Employees.css";
 
-const initialEmployees = [
-  { id: 1, name: "Alice Johnson", attendance: true, tasks: ["Report Q1", "Meeting prep"] },
-  { id: 2, name: "Bob Smith", attendance: false, tasks: ["Code review", "Update docs"] },
-  { id: 3, name: "Charlie Davis", attendance: true, tasks: ["Client call", "Design mockup"] }
-];
+function Employees() {
+  const [employees, setEmployees] = useState([
+    { id: 1, name: "John Doe", role: "Software Engineer" },
+    { id: 2, name: "Jane Smith", role: "Product Manager" },
+  ]);
 
-export default function Employees() {
-  const [employees, setEmployees] = useState(initialEmployees);
-  const [search, setSearch] = useState("");
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
 
-  const toggleAttendance = (id) => {
-    setEmployees(prev =>
-      prev.map(emp => emp.id === id ? { ...emp, attendance: !emp.attendance } : emp)
-    );
+  const addEmployee = () => {
+    if (!name.trim() || !role.trim()) return;
+    const newEmp = {
+      id: Date.now(),
+      name,
+      role,
+    };
+    setEmployees([...employees, newEmp]);
+    setName("");
+    setRole("");
   };
 
-  const filteredEmployees = employees.filter(emp =>
-    emp.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const deleteEmployee = (id) => {
+    setEmployees(employees.filter((emp) => emp.id !== id));
+  };
 
   return (
-    <div className="employees-container">
-      <h2>👥 Employee Tracking</h2>
-      <input
-        type="text"
-        placeholder="Search employees..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="search-input"
-      />
-      {filteredEmployees.length === 0 && <p>No employees found</p>}
-      {filteredEmployees.map(emp => (
-        <div key={emp.id} className="employee-card">
-          <h3>{emp.name}</h3>
-          <p>Status: <span className={emp.attendance ? "present" : "absent"}>
-            {emp.attendance ? "Present" : "Absent"}
-          </span></p>
-          <button onClick={() => toggleAttendance(emp.id)}>
-            Mark {emp.attendance ? "Absent" : "Present"}
-          </button>
-          <h4>Tasks:</h4>
-          <ul>
-            {emp.tasks.map((task, idx) => (
-              <li key={idx}>{task}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className="employees-page">
+      <h2>👨‍💼 Employees</h2>
+
+      <div className="employee-form">
+        <input
+          type="text"
+          placeholder="Employee Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Employee Role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        />
+        <button onClick={addEmployee}>➕ Add Employee</button>
+      </div>
+
+      <div className="employee-list">
+        {employees.map((emp) => (
+          <div key={emp.id} className="employee-card">
+            <div>
+              <strong>{emp.name}</strong>
+              <p>{emp.role}</p>
+            </div>
+            <button onClick={() => deleteEmployee(emp.id)}>❌</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
+
+export default Employees;

@@ -14,6 +14,7 @@ module.exports = {
         http: require.resolve('stream-http'),
         os: require.resolve('os-browserify/browser'),
         querystring: require.resolve('querystring-es3'),
+        buffer: require.resolve('buffer/'),
         fs: false,
         net: false,
       };
@@ -21,7 +22,8 @@ module.exports = {
       webpackConfig.plugins = [
         ...(webpackConfig.plugins || []),
         new webpack.ProvidePlugin({
-          process: 'process/browser',  // <- This is the key line to polyfill 'process'
+          process: 'process/browser',
+          Buffer: ['buffer', 'Buffer'],  // ✅ <- Add this line
         }),
       ];
 

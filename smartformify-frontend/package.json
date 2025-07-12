@@ -2,19 +2,21 @@
   "name": "smartformify-frontend",
   "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "buffer": "^6.0.3",
-    "process": "^0.11.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.1",
-    "react-scripts": "^5.0.1"
-  },
+  "description": "SmartFormify frontend - a modern React app with CRACO and routing",
+  "main": "src/index.js",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.30.1",
+    "react-scripts": "^5.0.1",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "@craco/craco": "^5.9.0",
@@ -41,8 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "overrides": {
-    "minimatch": "9.0.5"
   }
 }
+

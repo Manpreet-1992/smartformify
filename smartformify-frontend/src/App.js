@@ -1,5 +1,5 @@
 // src/App.js
-import HealthCheck from "./src/HealthCheck";
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -24,7 +24,7 @@ function App() {
         {/* Optional Navbar */}
         <Navbar />
 
-        <healthcheck/>
+       
 
         <div className="app-layout">
           <Sidebar />

@@ -1,5 +1,5 @@
 // src/App.js
-import HealthCheck from "./components/healthcheck";
+import healthcheck from "./src/healthcheck";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

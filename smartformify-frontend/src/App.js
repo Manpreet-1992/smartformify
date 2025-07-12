@@ -1,12 +1,15 @@
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import HealthCheck from "./components/HealthCheck";
+
 import Dashboard from "./pages/Dashboard";
 import Forms from "./pages/Forms";
 import Employees from "./pages/Employees";
 import Marketing from "./pages/Marketing";
-import HealthCheck from "./components/HealthCheck";
 
 import "./App.css";
 
@@ -16,16 +19,22 @@ function App() {
 
   return (
     <Router>
-      <div className="app-layout">
-        <Sidebar />
-        <div className="main-view">
-          <HealthCheck />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/forms" element={<Forms />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/marketing" element={<Marketing />} />
-          </Routes>
+      <div className="app-container">
+        {/* Optional Navbar */}
+        <Navbar />
+
+        <HealthCheck />
+
+        <div className="app-layout">
+          <Sidebar />
+          <div className="main-view">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/forms" element={<Forms />} />
+              <Route path="/employees" element={<Employees />} />
+              <Route path="/marketing" element={<Marketing />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </Router>
@@ -33,4 +42,3 @@ function App() {
 }
 
 export default App;
-

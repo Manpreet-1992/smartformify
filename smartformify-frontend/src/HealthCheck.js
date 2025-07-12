@@ -1,31 +1,28 @@
 // src/components/HealthCheck.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const HealthCheck = () => {
-  const [status, setStatus] = useState('Checking...');
+function HealthCheck() {
+  const [status, setStatus] = useState("Checking...");
 
   useEffect(() => {
-    const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-
-    fetch(apiURL)
+    fetch(`${process.env.REACT_APP_API_URL}/`)
       .then((res) => {
         if (res.ok) {
-          setStatus('✅ Backend is running');
+          setStatus("✅ Backend is running");
         } else {
-          setStatus('⚠️ Backend not reachable');
+          setStatus("❌ Backend check failed");
         }
       })
       .catch(() => {
-        setStatus('❌ Backend connection failed');
+        setStatus("❌ Could not reach backend");
       });
   }, []);
 
   return (
-    <div style={{ padding: '10px', background: '#eef', fontSize: '14px' }}>
-      {status}
+    <div style={{ padding: "0.5rem", backgroundColor: "#f0f0f0", fontSize: "0.9rem" }}>
+      <strong>Health Check:</strong> {status}
     </div>
   );
-};
+}
 
 export default HealthCheck;
-

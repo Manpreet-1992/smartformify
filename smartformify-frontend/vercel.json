@@ -1,7 +1,0 @@
-{
-  "projects": {},
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "buildCommand": "npm install && npm run build",
-  "outputDirectory": "build",
-  "framework": "create-react-app"
-}

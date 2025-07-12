@@ -1,7 +1,7 @@
-// src/components/HealthCheck.js
+// src/healthcheck.js
 import React, { useEffect, useState } from "react";
 
-function HealthCheck() {
+function healthcheck() {
   const [status, setStatus] = useState("Checking...");
 
   useEffect(() => {

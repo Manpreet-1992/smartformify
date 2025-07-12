@@ -1,0 +1,11 @@
+mkdir smartformify
+cd smartformify
+
+npm init -y
+
+
+npm install express mongoose dotenv
+
+
+echo > index.js
+echo > .env

@@ -1,40 +1,74 @@
 import React from "react";
+import {
+  BarChart2,
+  LayoutDashboard,
+  Settings,
+  FileText,
+  PlusCircle,
+} from "lucide-react";
 
-function Dashboard() {
+export default function Dashboard() {
   return (
-    <div className="w-full h-full bg-gray-100 p-6 overflow-auto">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
+    <div className="flex min-h-screen bg-gradient-to-br from-white via-sky-50 to-slate-100 text-gray-900 font-sans">
+      {/* Sidebar */}
+      <aside className="fixed md:static md:w-64 bg-white border-r border-gray-200 shadow-md p-6 z-10 min-h-screen">
+        <div className="text-3xl font-bold text-sky-600 mb-10 tracking-tight">SmartFormify</div>
+        <nav className="space-y-6 text-[16px]">
+          <a href="/dashboard" className="flex items-center gap-3 text-sky-700 font-semibold hover:text-sky-900">
+            <LayoutDashboard size={20} /> Dashboard
+          </a>
+          <a href="/create" className="flex items-center gap-3 text-gray-700 hover:text-sky-600">
+            <PlusCircle size={20} /> Create Form
+          </a>
+          <a href="/submissions" className="flex items-center gap-3 text-gray-700 hover:text-sky-600">
+            <FileText size={20} /> Submissions
+          </a>
+          <a href="/settings" className="flex items-center gap-3 text-gray-700 hover:text-sky-600">
+            <Settings size={20} /> Settings
+          </a>
+        </nav>
+      </aside>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        {/* Example cards */}
-        <div className="bg-white rounded-2xl shadow-md p-5">
-          <h2 className="text-lg font-semibold text-gray-700">Total Forms</h2>
-          <p className="text-3xl font-bold text-indigo-600 mt-2">34</p>
-        </div>
-        <div className="bg-white rounded-2xl shadow-md p-5">
-          <h2 className="text-lg font-semibold text-gray-700">Employees</h2>
-          <p className="text-3xl font-bold text-green-500 mt-2">12</p>
-        </div>
-        <div className="bg-white rounded-2xl shadow-md p-5">
-          <h2 className="text-lg font-semibold text-gray-700">Pending Tasks</h2>
-          <p className="text-3xl font-bold text-yellow-500 mt-2">8</p>
-        </div>
-        <div className="bg-white rounded-2xl shadow-md p-5">
-          <h2 className="text-lg font-semibold text-gray-700">Notifications</h2>
-          <p className="text-3xl font-bold text-red-500 mt-2">5</p>
-        </div>
-      </div>
+      {/* Main Content */}
+      <main className="flex-1 p-8 md:ml-64 bg-slate-50">
+        <header className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold text-sky-700">Dashboard</h1>
+          <button className="border border-sky-500 text-sky-700 px-4 py-2 rounded-md hover:bg-sky-50">Logout</button>
+        </header>
 
-      <div className="bg-white rounded-2xl shadow-md p-6 mt-8">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Recent Activity</h2>
-        <ul className="space-y-3">
-          <li className="text-gray-600">📝 John submitted a new form - <span className="text-sm text-gray-400">2 hours ago</span></li>
-          <li className="text-gray-600">👩‍💼 New employee added - <span className="text-sm text-gray-400">Yesterday</span></li>
-          <li className="text-gray-600">📢 Campaign launched - <span className="text-sm text-gray-400">3 days ago</span></li>
-        </ul>
-      </div>
+        {/* Analytics Cards */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="bg-white shadow-md border border-gray-100 rounded-xl p-6">
+            <div className="text-sm text-gray-500 mb-1">Total Forms</div>
+            <div className="text-3xl font-semibold text-gray-800">12</div>
+          </div>
+          <div className="bg-white shadow-md border border-gray-100 rounded-xl p-6">
+            <div className="text-sm text-gray-500 mb-1">Total Submissions</div>
+            <div className="text-3xl font-semibold text-gray-800">548</div>
+          </div>
+          <div className="bg-white shadow-md border border-gray-100 rounded-xl p-6">
+            <div className="text-sm text-gray-500 mb-1">Avg. Responses</div>
+            <div className="text-3xl font-semibold text-gray-800">45.6</div>
+          </div>
+          <div className="bg-white shadow-md border border-gray-100 rounded-xl p-6">
+            <div className="text-sm text-gray-500 mb-1">Bounce Rate</div>
+            <div className="text-3xl font-semibold text-gray-800">12%</div>
+          </div>
+        </section>
+
+        {/* Chart Placeholder */}
+        <section className="bg-white shadow-lg border border-gray-100 rounded-2xl p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold flex items-center gap-2 text-sky-700">
+              <BarChart2 size={22} /> Submission Trends
+            </h2>
+            <button className="text-sky-600 hover:text-sky-800 text-sm">View Details</button>
+          </div>
+          <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400">
+            [Insert Chart Here]
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
-
-export default Dashboard;

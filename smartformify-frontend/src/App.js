@@ -1,21 +1,25 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import Forms from "./pages/Forms";
 import Employees from "./pages/Employees";
 import Marketing from "./pages/Marketing";
+import HealthCheck from "./components/HealthCheck";
+
 import "./App.css";
 
 function App() {
-  const apiURL=process.env.REACT_APP_API_URL;
-  console.log('API URL:',apiURL);
+  const apiURL = process.env.REACT_APP_API_URL;
+  console.log("API URL:", apiURL);
+
   return (
     <Router>
       <div className="app-layout">
         <Sidebar />
         <div className="main-view">
+          <HealthCheck />
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/forms" element={<Forms />} />
@@ -29,3 +33,4 @@ function App() {
 }
 
 export default App;
+

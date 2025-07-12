@@ -1,4 +1,4 @@
-const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   webpack: {
@@ -17,6 +17,14 @@ module.exports = {
         fs: false,
         net: false,
       };
+
+      webpackConfig.plugins = [
+        ...(webpackConfig.plugins || []),
+        new webpack.ProvidePlugin({
+          process: 'process/browser',  // <- This is the key line to polyfill 'process'
+        }),
+      ];
+
       return webpackConfig;
     },
   },

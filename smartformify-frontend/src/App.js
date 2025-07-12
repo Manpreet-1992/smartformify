@@ -1,11 +1,8 @@
-// src/App.js
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
-
 
 import Dashboard from "./pages/Dashboard";
 import Forms from "./pages/Forms";
@@ -15,20 +12,13 @@ import Marketing from "./pages/Marketing";
 import "./App.css";
 
 function App() {
-  const apiURL = process.env.REACT_APP_API_URL;
-  console.log("API URL:", apiURL);
-
   return (
     <Router>
       <div className="app-container">
-        {/* Optional Navbar */}
-        <Navbar />
-
-       
-
-        <div className="app-layout">
-          <Sidebar />
-          <div className="main-view">
+        <Sidebar />
+        <div className="main-content">
+          <Navbar />
+          <div className="page-content">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/forms" element={<Forms />} />

@@ -1,0 +1,11 @@
+// React + React Router
+import { Routes, Route } from 'react-router-dom';
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/health" element={<h3>App is Healthy ✅</h3>} />
+      {/* other routes below */}
+    </Routes>
+  );
+}
